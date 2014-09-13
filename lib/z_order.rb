@@ -1,3 +1,3 @@
 module ZOrder
-  Background, Stars, Player, UI = *0..3
+  Background, Pill, Ghost, Picman, UI = *0..3
 end
