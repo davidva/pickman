@@ -1,9 +1,10 @@
 class PickmanWindow < Gosu::Window
   def initialize
-    super(Background::CELL_SIZE * 28, Background::CELL_SIZE * 31, false)
+    map = Map.new
+    super(Background::CELL_SIZE * map.num_cols, Background::CELL_SIZE * map.num_rows, false)
     self.caption = 'Picman'
 
-    @background = Background.new(self)
+    @background = Background.new(self, map)
   end
 
   def update
