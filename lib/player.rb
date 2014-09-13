@@ -1,6 +1,7 @@
 class Player
   def initialize(window)
     @image = Gosu::Image.new(window, "media/starfighter.bmp", false)
+    @beep = Gosu::Sample.new(window, "media/beep.wav")
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
   end
@@ -41,8 +42,14 @@ class Player
   end
 
   def collect_stars(stars)
-    if stars.reject! { |star| Gosu::distance(@x, @y, star.x, star.y) < 35 } then
-      @score += 1
+    stars.reject! do |star|
+      if Gosu::distance(@x, @y, star.x, star.y) < 35 then
+        @score += 10
+        @beep.play
+        true
+      else
+        false
+      end
     end
   end
 end
