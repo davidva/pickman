@@ -25,14 +25,24 @@ class Player
   def move
     @x += @vel_x
     @y += @vel_y
-    @x %= 800
-    @y %= 600
+    @x %= 640
+    @y %= 480
 
     @vel_x *= 0.95
     @vel_y *= 0.95
   end
 
   def draw
-    @image.draw_rot(@x, @y, 1, @angle)
+    @image.draw_rot(@x, @y, ZOrder::Player, @angle)
+  end
+
+  def score
+    @score
+  end
+
+  def collect_stars(stars)
+    if stars.reject! { |star| Gosu::distance(@x, @y, star.x, star.y) < 35 } then
+      @score += 1
+    end
   end
 end
