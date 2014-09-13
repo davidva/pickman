@@ -5,6 +5,7 @@ class PickmanWindow < Gosu::Window
     self.caption = 'Picman'
 
     @background = Background.new(self, map)
+    @pickman = Pickman.new(self)
   end
 
   def update
@@ -12,6 +13,7 @@ class PickmanWindow < Gosu::Window
 
   def draw
     background.draw
+    pickman.draw
   end
 
   def button_down(id)
@@ -20,5 +22,5 @@ class PickmanWindow < Gosu::Window
 
   private
 
-  attr_reader :background
+  attr_reader :background, :pickman
 end
