@@ -4,7 +4,7 @@ class PickmanWindow < Gosu::Window
     self.caption = 'Pickman'
 
     @maze = Maze.new(self)
-    @me = Me.new(self)
+    @me = Me.new(self, maze)
   end
 
   def update

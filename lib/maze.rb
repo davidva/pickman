@@ -6,17 +6,18 @@ class Maze
     @window = window
   end
 
-  def cell_at(row, col)
-    CELLS[row][col]
-  end
-
   def draw
     (0...NUM_COLS).each do |col|
       (0...NUM_ROWS).each do |row|
-        cell = cell_at(row, col)
-        draw_cell_at(row, col) if cell == 1
+        draw_cell_at(row, col) if CELLS[row][col] == 1
       end
     end
+  end
+
+  def block?(x, y)
+    row = y / Pickman::CELL_SIZE
+    col = x / Pickman::CELL_SIZE
+    CELLS[row][col] == 1
   end
 
   private
