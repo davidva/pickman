@@ -1,4 +1,4 @@
-class Ghost
+class OuterGhost
   include Character
 
   def initialize(window, maze)
