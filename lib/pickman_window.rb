@@ -1,24 +1,23 @@
 class PickmanWindow < Gosu::Window
   def initialize
-    map = Map.new
-    super(Background::CELL_SIZE * map.num_cols, Background::CELL_SIZE * map.num_rows, false)
-    self.caption = 'Picman'
+    super(Pickman::CELL_SIZE * Maze::NUM_COLS, Pickman::CELL_SIZE * Maze::NUM_ROWS, false)
+    self.caption = 'Pickman'
 
-    @background = Background.new(self, map)
-    @pickman = Pickman.new(self)
+    @maze = Maze.new(self)
+    @me = Me.new(self)
   end
 
   def update
-    pickman.left  if button_down?(Gosu::KbLeft)
-    pickman.right if button_down?(Gosu::KbRight)
-    pickman.down  if button_down?(Gosu::KbDown)
-    pickman.up    if button_down?(Gosu::KbUp)
-    pickman.move
+    me.left  if button_down?(Gosu::KbLeft)
+    me.right if button_down?(Gosu::KbRight)
+    me.down  if button_down?(Gosu::KbDown)
+    me.up    if button_down?(Gosu::KbUp)
+    me.move
   end
 
   def draw
-    background.draw
-    pickman.draw
+    maze.draw
+    me.draw
   end
 
   def button_down(id)
@@ -27,5 +26,5 @@ class PickmanWindow < Gosu::Window
 
   private
 
-  attr_reader :background, :pickman
+  attr_reader :me, :maze
 end

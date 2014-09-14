@@ -1,19 +1,27 @@
-class Map
+class Maze
+  NUM_ROWS = 31
+  NUM_COLS = 28
+
+  def initialize(window)
+    @window = window
+  end
+
   def cell_at(row, col)
-    MAP[row][col]
+    CELLS[row][col]
   end
 
-  def num_rows
-    MAP.size
-  end
-
-  def num_cols
-    MAP.first.size
+  def draw
+    (0...NUM_COLS).each do |col|
+      (0...NUM_ROWS).each do |row|
+        cell = cell_at(row, col)
+        draw_cell_at(row, col) if cell == 1
+      end
+    end
   end
 
   private
 
-  MAP = [
+  CELLS = [
     [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ],
     [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
     [ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1 ],
@@ -46,4 +54,25 @@ class Map
     [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
     [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
   ]
+
+  COLOR = 0xff4444ff
+  CELL_SPACING = 2
+
+  attr_reader :window
+
+  def draw_cell_at(row, col)
+    window.draw_quad(col * Pickman::CELL_SIZE + CELL_SPACING,
+                     row * Pickman::CELL_SIZE + CELL_SPACING,
+                     COLOR,
+                     col * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
+                     row * Pickman::CELL_SIZE + CELL_SPACING,
+                     COLOR,
+                     col * Pickman::CELL_SIZE + CELL_SPACING,
+                     row * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
+                     COLOR,
+                     col * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
+                     row * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
+                     COLOR,
+                     ZOrder::Background)
+  end
 end

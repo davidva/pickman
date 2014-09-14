@@ -2,6 +2,8 @@
 
 require 'gosu'
 
+require './lib/pickman.rb'
+require './lib/maze.rb'
 Dir['./lib/*.rb'].each { |file| require file }
 
 window = PickmanWindow.new
