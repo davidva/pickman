@@ -9,6 +9,11 @@ class PickmanWindow < Gosu::Window
   end
 
   def update
+    pickman.left  if button_down?(Gosu::KbLeft)
+    pickman.right if button_down?(Gosu::KbRight)
+    pickman.down  if button_down?(Gosu::KbDown)
+    pickman.up    if button_down?(Gosu::KbUp)
+    pickman.move
   end
 
   def draw
