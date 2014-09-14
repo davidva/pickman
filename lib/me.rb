@@ -64,7 +64,7 @@ class Me
     Pickman.corners(x, y).none? { |(x, y)| maze.block?(x, y) }
   end
 
-  def move
+  def update
     @triangle = TRIANGLE_UP if can_move_up? && @next == :up
     @triangle = TRIANGLE_DOWN if can_move_down? && @next == :down
     @triangle = TRIANGLE_LEFT if can_move_left? && @next == :left
