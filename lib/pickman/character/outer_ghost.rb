@@ -5,8 +5,8 @@ module Pickman
     def initialize(window, maze)
       @window = window
       @maze = maze
-      @x = CELL_SIZE
-      @y = CELL_SIZE
+      @x = CELL_SIZE * 14
+      @y = CELL_SIZE * 11
       down
     end
 
