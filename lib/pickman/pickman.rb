@@ -44,8 +44,8 @@ module Pickman
       self.caption = 'Pickman'
 
       @maze = Maze.new(self)
-      @pills = Pill.buildPills(self)
       @me = Character::Me.new(self, maze)
+      @pills = Pill.buildPills(self, me)
       @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
     end
 
@@ -54,6 +54,7 @@ module Pickman
       me.right if button_down?(Gosu::KbRight)
       me.down  if button_down?(Gosu::KbDown)
       me.up    if button_down?(Gosu::KbUp)
+      pills.each(&:update)
       characters.each(&:update)
     end
 

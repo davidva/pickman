@@ -2,6 +2,8 @@ module Pickman
   class Character::Me
     include Character
 
+    attr_reader :x, :y
+
     def initialize(window, maze)
       @x = CELL_SIZE
       @y = CELL_SIZE
@@ -48,6 +50,6 @@ module Pickman
     TRIANGLE_LEFT  = [[CELL_SIZE, 0], [0, CELL_SIZE / 2], [CELL_SIZE, CELL_SIZE]]
     TRIANGLE_RIGHT = [[0, 0], [CELL_SIZE, CELL_SIZE / 2], [0, CELL_SIZE]]
 
-    attr_reader :x, :y, :triangle, :window, :maze
+    attr_reader :triangle, :window, :maze
   end
 end
