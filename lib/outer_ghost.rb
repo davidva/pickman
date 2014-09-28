@@ -35,7 +35,7 @@ class OuterGhost
                      x + Pickman::CELL_SIZE, y, Gosu::Color::RED,
                      x, y + Pickman::CELL_SIZE, Gosu::Color::RED,
                      x + Pickman::CELL_SIZE, y + Pickman::CELL_SIZE, Gosu::Color::RED,
-                     ZOrder::Background)
+                     Pickman::ZOrder::Ghost)
   end
 
   private

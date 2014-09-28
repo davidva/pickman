@@ -47,6 +47,10 @@ module Character
   private
 
   def can_move?(x, y)
-    Pickman.corners(x, y).none? { |(x, y)| maze.block?(x, y) }
+    corners(x, y).none? { |(x, y)| maze.block?(x, y) }
+  end
+
+  def corners(x, y)
+    [[x, y], [x + Pickman::CELL_SIZE - 1, y], [x, y + Pickman::CELL_SIZE - 1], [x + Pickman::CELL_SIZE - 1, y + Pickman::CELL_SIZE - 1]]
   end
 end

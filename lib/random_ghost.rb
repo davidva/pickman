@@ -33,7 +33,7 @@ class RandomGhost
                      x + Pickman::CELL_SIZE, y, Gosu::Color::GREEN,
                      x, y + Pickman::CELL_SIZE, Gosu::Color::GREEN,
                      x + Pickman::CELL_SIZE, y + Pickman::CELL_SIZE, Gosu::Color::GREEN,
-                     ZOrder::Background)
+                     Pickman::ZOrder::Ghost)
   end
 
   private

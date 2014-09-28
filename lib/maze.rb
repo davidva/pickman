@@ -74,6 +74,6 @@ class Maze
                      col * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
                      row * Pickman::CELL_SIZE + Pickman::CELL_SIZE - CELL_SPACING,
                      COLOR,
-                     ZOrder::Background)
+                     Pickman::ZOrder::Background)
   end
 end

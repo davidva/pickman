@@ -13,7 +13,7 @@ class Me
     window.draw_triangle(x + triangle[0][0], y + triangle[0][1], Gosu::Color::YELLOW,
                          x + triangle[1][0], y + triangle[1][1], Gosu::Color::YELLOW,
                          x + triangle[2][0], y + triangle[2][1], Gosu::Color::YELLOW,
-                         ZOrder::Me)
+                         Pickman::ZOrder::Me)
   end
 
   def moving_up?
