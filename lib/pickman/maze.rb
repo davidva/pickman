@@ -1,8 +1,5 @@
 module Pickman
   class Maze
-    NUM_ROWS = 31
-    NUM_COLS = 28
-
     def initialize(window)
       @window = window
     end
@@ -10,7 +7,7 @@ module Pickman
     def draw
       (0...NUM_COLS).each do |col|
         (0...NUM_ROWS).each do |row|
-          draw_cell_at(row, col) if CELLS[row][col] == '#'
+          draw_cell_at(row, col) if MAP[row][col] == '#'
         end
       end
     end
@@ -18,54 +15,10 @@ module Pickman
     def block?(x, y)
       row = y / CELL_SIZE
       col = x / CELL_SIZE
-      CELLS[row][col] == '#' || CELLS[row][col] == '_'
-    end
-
-    def buildPills
-      pills = []
-      (0...NUM_COLS).each do |col|
-        (0...NUM_ROWS).each do |row|
-          pills << Pill.new(window, col, row) if CELLS[row][col] == '.'
-        end
-      end
-      pills
+      MAP[row][col] == '#' || MAP[row][col] == '_'
     end
 
     private
-
-    CELLS = [
-      '############################'.chars,
-      '#..........................#'.chars,
-      '#.####.#####.##.#####.####.#'.chars,
-      '#.####.#####.##.#####.####.#'.chars,
-      '#.####.#####.##.#####.####.#'.chars,
-      '#..........................#'.chars,
-      '#.####.##.########.##.####.#'.chars,
-      '#.####.##.########.##.####.#'.chars,
-      '#......##....##....##......#'.chars,
-      '######.#####.##.#####.######'.chars,
-      '######.#####.##.#####.######'.chars,
-      '    ##.##..........##.##    '.chars,
-      '    ##.##.###__###.##.##    '.chars,
-      '######.##.#      #.##.######'.chars,
-      '..........#      #..........'.chars,
-      '######.##.#      #.##.######'.chars,
-      '    ##.##.########.##.##    '.chars,
-      '    ##.##..........##.##    '.chars,
-      '    ##.##.########.##.##    '.chars,
-      '######.##.########.##.######'.chars,
-      '#............##............#'.chars,
-      '#.####.#####.##.#####.####.#'.chars,
-      '#.####.#####.##.#####.####.#'.chars,
-      '#...##................##...#'.chars,
-      '###.##.##.########.##.##.###'.chars,
-      '###.##.##.########.##.##.###'.chars,
-      '#......##....##....##......#'.chars,
-      '#.##########.##.##########.#'.chars,
-      '#.##########.##.##########.#'.chars,
-      '#..........................#'.chars,
-      '############################'.chars
-    ]
 
     COLOR = 0xff4444ff
     CELL_SPACING = 2

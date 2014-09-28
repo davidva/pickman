@@ -1,13 +1,50 @@
 module Pickman
   CELL_SIZE = 24
 
+  MAP = [
+    '############################'.chars,
+    '#..........................#'.chars,
+    '#.####.#####.##.#####.####.#'.chars,
+    '#.####.#####.##.#####.####.#'.chars,
+    '#.####.#####.##.#####.####.#'.chars,
+    '#..........................#'.chars,
+    '#.####.##.########.##.####.#'.chars,
+    '#.####.##.########.##.####.#'.chars,
+    '#......##....##....##......#'.chars,
+    '######.#####.##.#####.######'.chars,
+    '######.#####.##.#####.######'.chars,
+    '    ##.##..........##.##    '.chars,
+    '    ##.##.###__###.##.##    '.chars,
+    '######.##.#      #.##.######'.chars,
+    '..........#      #..........'.chars,
+    '######.##.#      #.##.######'.chars,
+    '    ##.##.########.##.##    '.chars,
+    '    ##.##..........##.##    '.chars,
+    '    ##.##.########.##.##    '.chars,
+    '######.##.########.##.######'.chars,
+    '#............##............#'.chars,
+    '#.####.#####.##.#####.####.#'.chars,
+    '#.####.#####.##.#####.####.#'.chars,
+    '#...##................##...#'.chars,
+    '###.##.##.########.##.##.###'.chars,
+    '###.##.##.########.##.##.###'.chars,
+    '#......##....##....##......#'.chars,
+    '#.##########.##.##########.#'.chars,
+    '#.##########.##.##########.#'.chars,
+    '#..........................#'.chars,
+    '############################'.chars
+  ]
+
+  NUM_ROWS = 31
+  NUM_COLS = 28
+
   class Window < Gosu::Window
     def initialize
-      super(CELL_SIZE * Maze::NUM_COLS, CELL_SIZE * Maze::NUM_ROWS, false)
+      super(CELL_SIZE * NUM_COLS, CELL_SIZE * NUM_ROWS, false)
       self.caption = 'Pickman'
 
       @maze = Maze.new(self)
-      @pills = @maze.buildPills
+      @pills = Pill.buildPills(self)
       @me = Character::Me.new(self, maze)
       @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
     end
