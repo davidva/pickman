@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
-
 require 'gosu'
+require './lib/pickman/pickman.rb'
+Dir['./lib/pickman/*.rb'].each { |file| require file }
 
-require './lib/pickman.rb'
-require './lib/maze.rb'
-Dir['./lib/*.rb'].each { |file| require file }
-
-window = PickmanWindow.new
+window = Pickman::Window.new
 window.show
