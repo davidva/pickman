@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'gosu'
 require './lib/pickman/pickman.rb'
+require './lib/pickman/pill.rb'
 require './lib/pickman/maze.rb'
 Dir['./lib/pickman/character/*.rb'].each { |file| require file }
 

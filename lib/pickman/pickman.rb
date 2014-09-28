@@ -7,6 +7,7 @@ module Pickman
       self.caption = 'Pickman'
 
       @maze = Maze.new(self)
+      @pills = @maze.buildPills
       @me = Character::Me.new(self, maze)
       @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
     end
@@ -21,6 +22,7 @@ module Pickman
 
     def draw
       maze.draw
+      pills.each(&:draw)
       characters.each(&:draw)
     end
 
@@ -30,7 +32,7 @@ module Pickman
 
     private
 
-    attr_reader :me, :maze, :characters
+    attr_reader :me, :maze, :characters, :pills
   end
 
   module ZOrder
