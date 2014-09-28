@@ -25,10 +25,10 @@ module Pickman
 
     def draw
       return if eaten
-      window.draw_quad(x + 9, y + 9, Gosu::Color::YELLOW,
-                       x + CELL_SIZE - 9, y + 9, Gosu::Color::YELLOW,
-                       x + 9, y + CELL_SIZE - 9, Gosu::Color::YELLOW,
-                       x + CELL_SIZE - 9, y + CELL_SIZE - 9, Gosu::Color::YELLOW,
+      window.draw_quad(x + 8, y + 8, Gosu::Color::YELLOW,
+                       x + CELL_SIZE - 8, y + 8, Gosu::Color::YELLOW,
+                       x + 8, y + CELL_SIZE - 8, Gosu::Color::YELLOW,
+                       x + CELL_SIZE - 8, y + CELL_SIZE - 8, Gosu::Color::YELLOW,
                        ZOrder::Pill)
     end
 
