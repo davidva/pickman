@@ -1,5 +1,5 @@
 module Pickman
-  class RandomGhost
+  class Character::RandomGhost
     include Character
 
     def initialize(window, maze)

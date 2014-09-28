@@ -7,8 +7,8 @@ module Pickman
       self.caption = 'Pickman'
 
       @maze = Maze.new(self)
-      @me = Me.new(self, maze)
-      @characters = [@me, OuterGhost.new(self, maze), RandomGhost.new(self, maze)]
+      @me = Character::Me.new(self, maze)
+      @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
     end
 
     def update

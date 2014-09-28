@@ -1,5 +1,5 @@
 module Pickman
-  class OuterGhost
+  class Character::OuterGhost
     include Character
 
     def initialize(window, maze)

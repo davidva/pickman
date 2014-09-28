@@ -1,5 +1,5 @@
 module Pickman
-  class Me
+  class Character::Me
     include Character
 
     def initialize(window, maze)
