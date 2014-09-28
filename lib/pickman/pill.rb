@@ -20,7 +20,10 @@ module Pickman
 
     def update
       return if eaten
-      @eaten = true if is_me_here?
+      if is_me_here?
+        @eaten = true
+        me.inc_score(25)
+      end
     end
 
     def draw

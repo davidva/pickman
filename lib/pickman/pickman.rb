@@ -47,6 +47,7 @@ module Pickman
       @me = Character::Me.new(self, maze)
       @pills = Pill.buildPills(self, me)
       @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
+      @ui = UI.new(self, me)
     end
 
     def update
@@ -62,6 +63,7 @@ module Pickman
       maze.draw
       pills.each(&:draw)
       characters.each(&:draw)
+      ui.draw
     end
 
     def button_down(id)
@@ -70,10 +72,10 @@ module Pickman
 
     private
 
-    attr_reader :me, :maze, :characters, :pills
+    attr_reader :me, :maze, :characters, :pills, :ui
   end
 
   module ZOrder
-    Background, Pill, Ghost, Me, UI = *0..3
+    Background, Pill, Ghost, Me, UI = *0..4
   end
 end

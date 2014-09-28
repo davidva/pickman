@@ -3,6 +3,7 @@ require 'gosu'
 require './lib/pickman/pickman.rb'
 require './lib/pickman/pill.rb'
 require './lib/pickman/maze.rb'
+require './lib/pickman/ui.rb'
 Dir['./lib/pickman/character/*.rb'].each { |file| require file }
 
 window = Pickman::Window.new
