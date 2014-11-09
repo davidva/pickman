@@ -2,6 +2,8 @@ module Pickman
   module Character
     SPEED = 3
 
+    attr_reader :x, :y
+
     def up
       @next = :up
     end

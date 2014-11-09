@@ -2,14 +2,11 @@ module Pickman
   class Character::Me
     include Character
 
-    attr_reader :x, :y, :score
-
     def initialize(window, maze)
       @x = CELL_SIZE
       @y = CELL_SIZE
       @window = window
       @maze = maze
-      @score = 0
       right
     end
 
@@ -18,10 +15,6 @@ module Pickman
                            x + triangle[1][0], y + triangle[1][1], Gosu::Color::YELLOW,
                            x + triangle[2][0], y + triangle[2][1], Gosu::Color::YELLOW,
                            ZOrder::Me)
-    end
-
-    def inc_score(amount)
-      @score += amount
     end
 
     def moving_up?

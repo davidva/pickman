@@ -39,7 +39,7 @@ module Pickman
 
     private
 
-    attr_reader :window, :maze, :x, :y
+    attr_reader :window, :maze
 
     def moving_up?
       @next == :up

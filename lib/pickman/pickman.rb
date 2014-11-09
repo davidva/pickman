@@ -1,6 +1,4 @@
 module Pickman
-  CELL_SIZE = 24
-
   MAP = [
     '############################'.chars,
     '#..........................#'.chars,
@@ -35,6 +33,8 @@ module Pickman
     '############################'.chars
   ]
 
+  CELL_SIZE = 24
+
   NUM_ROWS = 31
   NUM_COLS = 28
 
@@ -45,9 +45,11 @@ module Pickman
 
       @maze = Maze.new(self)
       @me = Character::Me.new(self, maze)
-      @pills = Pill.buildPills(self, me)
-      @characters = [@me, Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)]
-      @ui = UI.new(self, me)
+      @pills = Pill.buildPills(self)
+      @ghosts = Character::OuterGhost.new(self, maze), Character::RandomGhost.new(self, maze)
+      @ui = UI.new(self)
+      @lives = 3
+      @score = 0
     end
 
     def update
@@ -56,14 +58,23 @@ module Pickman
       me.down  if button_down?(Gosu::KbDown)
       me.up    if button_down?(Gosu::KbUp)
       pills.each(&:update)
-      characters.each(&:update)
+      ghosts.each(&:update)
+      me.update
+      pill_eaten = pills.detect { |pill| me_here?(pill) }
+      if pill_eaten
+        @score += 25
+        pills.delete(pill_eaten)
+      end
+      killer = ghosts.detect { |ghost| me_here?(ghost) }
+      @lives -= 1 if killer
     end
 
     def draw
       maze.draw
       pills.each(&:draw)
-      characters.each(&:draw)
-      ui.draw
+      ghosts.each(&:draw)
+      me.draw
+      ui.draw(lives, score, pills.count)
     end
 
     def button_down(id)
@@ -72,7 +83,11 @@ module Pickman
 
     private
 
-    attr_reader :me, :maze, :characters, :pills, :ui
+    attr_reader :me, :maze, :ghosts, :pills, :ui, :lives, :score
+
+    def me_here?(other)
+      me.x == other.x && me.y == other.y
+    end
   end
 
   module ZOrder
